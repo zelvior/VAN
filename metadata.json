@@ -1,0 +1,6 @@
+{
+  "name": "Verified Anime News",
+  "description": "An elite mobile-optimized anime intelligence platform providing highly verified anime news and anti-rumor trust scorecard indices",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,110 @@
+{
+  "entities": {
+    "News": {
+      "title": "News Article",
+      "description": "A verified anime news article",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "summary": { "type": "string" },
+        "content": { "type": "string" },
+        "thumbnail": { "type": "string" },
+        "trustScore": { "type": "integer" },
+        "verificationStatus": { "type": "string", "enum": ["VERIFIED", "TRUSTED", "PENDING", "UNCONFIRMED"] },
+        "publishDate": { "type": "string" },
+        "createdAt": { "type": "string" },
+        "sourceName": { "type": "string" },
+        "sourceUrl": { "type": "string" },
+        "animeId": { "type": "string" },
+        "animeTitle": { "type": "string" },
+        "category": { "type": "string", "enum": ["ANNOUNCEMENT", "TRAILER", "RELEASE", "STAFF_CAST", "INDUSTRY", "RUMOR"] },
+        "originalAuthor": { "type": "string" },
+        "isOfficial": { "type": "boolean" },
+        "redditPostUrl": { "type": "string" },
+        "anilistId": { "type": "integer" },
+        "tags": { "type": "array" },
+        "views": { "type": "integer" },
+        "bookmarksCount": { "type": "integer" }
+      },
+      "required": ["title", "summary", "content", "trustScore", "verificationStatus", "publishDate", "sourceName", "sourceUrl"]
+    },
+    "Source": {
+      "title": "News Source",
+      "description": "An anime news source and its metadata used to calculate credibility",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "url": { "type": "string" },
+        "credibilityScore": { "type": "integer" },
+        "type": { "type": "string", "enum": ["OFFICIAL", "NEWS_OUTLET", "SOCIAL_MEDIA", "FORUM", "BLOG"] },
+        "isTrusted": { "type": "boolean" }
+      },
+      "required": ["name", "url", "credibilityScore", "type", "isTrusted"]
+    },
+    "Ad": {
+      "title": "Advertisement",
+      "description": "An ad served within the application to monetize verified content",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "imageUrl": { "type": "string" },
+        "title": { "type": "string" },
+        "targetUrl": { "type": "string" },
+        "isActive": { "type": "boolean" },
+        "impressions": { "type": "integer" },
+        "clicks": { "type": "integer" }
+      },
+      "required": ["imageUrl", "title", "targetUrl", "isActive"]
+    },
+    "Report": {
+      "title": "Misinformation Report",
+      "description": "A user-submitted report flagging a news article for rumors or false content",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "articleId": { "type": "string" },
+        "articleTitle": { "type": "string" },
+        "reason": { "type": "string" },
+        "reportedBy": { "type": "string" },
+        "createdAt": { "type": "string" },
+        "status": { "type": "string", "enum": ["PENDING", "RESOLVED"] }
+      },
+      "required": ["articleId", "articleTitle", "reason", "createdAt", "status"]
+    },
+    "Admin": {
+      "title": "Admin Role Mapping",
+      "description": "Defines admin users having control over authorization",
+      "type": "object",
+      "properties": {
+        "email": { "type": "string" },
+        "uid": { "type": "string" },
+        "assignedAt": { "type": "string" }
+      },
+      "required": ["email", "uid"]
+    }
+  },
+  "firestore": {
+    "/news/{newsId}": {
+      "schema": "News",
+      "description": "Anime news articles aggregated and vetted"
+    },
+    "/sources/{sourceId}": {
+      "schema": "Source",
+      "description": "News sources verified by admins"
+    },
+    "/ads/{adId}": {
+      "schema": "Ad",
+      "description": "Advertisements managed by admins"
+    },
+    "/reports/{reportId}": {
+      "schema": "Report",
+      "description": "User flags regarding rumors or incorrect data"
+    },
+    "/admins/{adminUid}": {
+      "schema": "Admin",
+      "description": "Firebase admin users with access to moderator dashboards"
+    }
+  }
+}

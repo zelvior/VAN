@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Outfit", "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  --color-brand-red: #ff3e3e;       /* Bento red accent */
+  --color-brand-red-hover: #e02d2d; /* red hover */
+  --color-anime-dark: #050505;      /* Bento dark bg */
+  --color-anime-card: rgba(255, 255, 255, 0.03);
+  --color-anime-border: rgba(255, 255, 255, 0.08);
+  --color-steel-light: #ffffff;
+
+  --animate-pulse-slow: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-border-glow: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  0% {
+    border-color: rgba(255, 62, 62, 0.4);
+    box-shadow: 0 0 5px rgba(255, 62, 62, 0.2);
+  }
+  100% {
+    border-color: rgba(255, 62, 62, 0.8);
+    box-shadow: 0 0 15px rgba(255, 62, 62, 0.4);
+  }
+}
+
+/* Glassmorphism scrollbars & modern core global styling components */
+body {
+  background-color: #050505;
+  color: #ffffff;
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+/* Bento Tech Radial dot grid */
+.tech-grid {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #050505;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #ff3e3e;
+}
+
+/* Bento Glass panel effect */
+.glass {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+}
+
+.glass-panel {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Hover glow bento card structure */
+.glow-card {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.glow-card:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 62, 62, 0.3);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.8), 0 0 15px rgba(255, 62, 62, 0.1);
+}
+
+/* Bento details and labels styling */
+.red-accent {
+  color: #ff3e3e;
+}
+.bg-red-accent {
+  background-color: #ff3e3e;
+}
+.trust-bar {
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.trust-fill {
+  height: 100%;
+  background: #ff3e3e;
+  box-shadow: 0 0 10px rgba(255, 62, 62, 0.5);
+}
+.label-small {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 700;
+  opacity: 0.6;
+}
+
+/* Code layout indicators */
+.mono-label {
+  font-family: var(--font-mono);
+  letter-spacing: -0.02em;
+}
+
+/* Active transitions */
+.page-fade-in {
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
